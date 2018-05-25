@@ -4,13 +4,13 @@
  */
 package cn.milkygreen.springboot.controller;
 
-import cn.milkygreen.springboot.entity.User;
-import cn.milkygreen.springboot.service.UserService;
-import cn.milkygreen.springboot.utils.ConfigUtil;
+import cn.milkygreen.springboot.dao.AppInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import cn.milkygreen.springboot.utils.ConfigUtil;
 
 /**
  * @author liyunmeng
@@ -27,16 +27,17 @@ public class TestController {
     private ConfigUtil configUtil;
 
     @Autowired
-    private UserService userService;
+    private AppInfoMapper appInfoMapper;
+
 
     @RequestMapping("hello")
     public String hello(){
         return "hello springboot" + " 。config=" + config + " 。configUtil.filterConfig=" + configUtil.getFilterConfig();
     }
 
-    @RequestMapping("searchuser")
-    public User searchUser(String userName){
-        return userService.findByUserName(userName);
+    @RequestMapping("getappinfo")
+    public String getappinfo(){
+        return "getappinfo=" + appInfoMapper.getAll();
     }
 
 }
