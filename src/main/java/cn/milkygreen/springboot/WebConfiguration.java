@@ -4,11 +4,12 @@ import cn.milkygreen.springboot.filter.MyFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 
 @Configuration
-public class WebConfiguration {
+public class WebConfiguration extends WebMvcConfigurerAdapter {
 
     /*@Bean
     public RemoteIpFilter remoteIpFilter() {
@@ -27,5 +28,9 @@ public class WebConfiguration {
         return registration;
     }
 
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
+    }
 
 }
